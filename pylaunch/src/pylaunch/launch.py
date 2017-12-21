@@ -95,6 +95,8 @@ def resource_path(package_name, filename):
         Args:
         package_name (string)
         filename (string) file in package to locate
+        
+        If multiple are found it returns the first option.
 
         Returns:
         string path to file
@@ -104,9 +106,6 @@ def resource_path(package_name, filename):
     if len(l) == 0:
         raise FileNotFoundException("Include error. Package %s doesn't containt %s." \
                                     % (package_name, filename))
-    if len(l) > 1:
-        raise RuntimeError("Multiple files named %s found searching package %s. Found [[%s]]" \
-                            % (filename, package_name, l))
     return l[0]
 
 class FileNotFoundException(Exception):
